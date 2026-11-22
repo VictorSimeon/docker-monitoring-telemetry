@@ -1,6 +1,6 @@
 # Monitoring Stack Deployment (Prometheus + Grafana)
  
-Containerized hands-on environment built with **Docker Compose**.
+Containerized hands-on environment built with **Docker Compose** to demonstrate pull-based telemetry collection and real-time visualization (developed for a technical seminar at ETSIIT – UGR).
  
 The goal of this setup is to demonstrate locally the metric collection model based on *scraping* (**Pull**) and its real-time visualization.
  
@@ -47,13 +47,13 @@ Defines the collection interval (`scrape_interval`) and the monitored targets th
 ```yaml
 global:
   scrape_interval: 5s
- 
+
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
- 
-  - job_name: 'nodo_linux'
+
+  - job_name: 'linux_node'
     static_configs:
       - targets: ['node-exporter:9100']
 ```
@@ -77,16 +77,16 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
- 
+
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     restart: unless-stopped
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
- 
+
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
