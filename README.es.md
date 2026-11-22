@@ -1,6 +1,6 @@
 # Despliegue de Stack de Monitorización (Prometheus + Grafana)
 
-Entorno práctico contenedorizado mediante **Docker Compose**.
+Entorno práctico contenedorizado mediante **Docker Compose** para demostrar la recopilación de telemetría basada en pull (extracción) y su visualización en tiempo real (desarrollado para un seminario técnico en la ETSIIT – UGR).
 
 El objetivo de esta maqueta es demostrar en local el modelo de recolección de métricas por *scraping* (**Pull**) y su visualización en tiempo real.
 
